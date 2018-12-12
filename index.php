@@ -1,3 +1,31 @@
+
+<?php
+require_once 'connection.php';
+$link = mysqli_connect(HOST, NAME, PASSWORD, DATABASE)
+or die("Ошибка " . mysqli_error($link));
+
+$result = mysqli_query($link, "select * from tblusers");
+
+if($result)
+{
+    $rows = mysqli_num_rows($result); // количество полученных строк
+
+    echo "<table><tr><th>Id</th><th>Модель</th><th>Производитель</th></tr>";
+    for ($i = 0 ; $i < $rows ; ++$i)
+    {
+        $row = mysqli_fetch_assoc($result);
+        echo "<tr>";
+        for ($j = 0 ; $j < 3 ; ++$j) echo "<td>{$row["Id"]}</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+    // очищаем результат
+    mysqli_free_result($result);
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
