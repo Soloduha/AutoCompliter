@@ -10,15 +10,19 @@ if($result)
 {
     $rows = mysqli_num_rows($result); // количество полученных строк
 
-    echo "<table><tr><th>Id</th><th>Модель</th><th>Производитель</th></tr>";
+    echo "<div class=\"table-responsive-sm\"><table class=\"table\"><tr><th>Id</th><th>FirstName</th><th>SecondName</th><th>Email</th></tr>";
     for ($i = 0 ; $i < $rows ; ++$i)
     {
         $row = mysqli_fetch_assoc($result);
         echo "<tr>";
-        for ($j = 0 ; $j < 3 ; ++$j) echo "<td>{$row["Id"]}</td>";
+        echo "<td>{$row["Id"]}</td>";
+        echo "<td>{$row["FirstName"]}</td>";
+        echo "<td>{$row["LastName"]}</td>";
+        echo "<td>{$row["Email"]}</td>";
+        echo "<td><input type='button' class='btn-primary btn-sm' width='150px' id='Add$i' /></td>";
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</table></div>";
 
     // очищаем результат
     mysqli_free_result($result);
@@ -35,6 +39,7 @@ if($result)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Автосервіс</title>
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur delectus, deleniti doloremque
